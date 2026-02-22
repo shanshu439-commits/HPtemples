@@ -16,6 +16,30 @@ header{
     padding:20px;
 }
 
+/* NAVBAR STYLE */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #e67e22;
+}
+
+.nav-tabs {
+    display: flex;
+    position: relative;
+}
+
 /*navbar*/
 nav{
     text-align:center;
