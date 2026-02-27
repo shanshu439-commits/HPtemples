@@ -738,3 +738,21 @@ footer{
 .reverse{
     flex-direction: row-reverse;
 }
+/* ========== FAMOUS ATTRACTIONS - READ MORE LINK ========== */
+
+.famous ul li {
+    margin-bottom: 10px;
+}
+
+.famous .read-more {
+    margin-left: 6px;
+    font-size: 13px;
+    color: #666;          /* removes blue hyperlink */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.famous .read-more:hover {
+    color: #000;
+    text-decoration: underline;
+}
