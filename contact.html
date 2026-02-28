@@ -22,7 +22,6 @@
 
 <div class="contact-wrapper">
 
-    <!-- Owner Information -->
     <div class="owner-info">
         <h2>Website Owner</h2>
         <p><strong>Name:</strong> Shivanshu </p>
@@ -32,27 +31,27 @@
 
         <h3>About This Website</h3>
         <p>
-            This website is created to provide information about 
-            famous temples of Kangra district and promote tourism 
+            This website is created to provide information about
+            famous temples of Kangra district and promote tourism
             in Himachal Pradesh.
         </p>
     </div>
 
-    <!-- Contact Form -->
     <div class="contact-form-box">
         <h2>Send a Message</h2>
 
-        <form>
-            <label>Full Name</label>
-            <input type="text" placeholder="Enter your name" required>
+        <form id="contactForm">
+            <label for="name">Full Name</label>
+            <input id="name" name="name" type="text" placeholder="Enter your name" required>
 
-            <label>Email Address</label>
-            <input type="email" placeholder="Enter your email" required>
+            <label for="email">Email Address</label>
+            <input id="email" name="email" type="email" placeholder="Enter your email" required>
 
-            <label>Message</label>
-            <textarea rows="5" placeholder="Write your message" required></textarea>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Write your message" required></textarea>
 
-            <button type="submit">Send Message</button>
+            <button id="submitBtn" type="submit">Send Message</button>
+            <p id="formStatus" aria-live="polite"></p>
         </form>
     </div>
 
@@ -61,8 +60,53 @@
 </section>
 
 <footer>
-© 2026 Kangra Temples | Himachal Pradesh Tourism
+&copy; 2026 Kangra Temples | Himachal Pradesh Tourism
 </footer>
+
+<script>
+const form = document.getElementById("contactForm");
+const statusEl = document.getElementById("formStatus");
+const submitBtn = document.getElementById("submitBtn");
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  if (!name || !email || !message) {
+    statusEl.textContent = "Please fill all fields.";
+    return;
+  }
+
+  submitBtn.disabled = true;
+  statusEl.textContent = "Sending...";
+
+  try {
+    const response = await fetch("http://localhost:3000/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, message })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Failed to send message.");
+    }
+
+    statusEl.textContent = "Message sent successfully.";
+    form.reset();
+  } catch (error) {
+    statusEl.textContent = error.message || "Something went wrong.";
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
+</script>
 
 </body>
 </html>
