@@ -50,7 +50,7 @@
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="5" placeholder="Write your message" required></textarea>
 
-            <button id="submitBtn" type="submit">Send Message</button>
+            <button onclick="sendMessage()">Send Message</button>
             <p id="formStatus" aria-live="polite"></p>
         </form>
     </div>
@@ -94,15 +94,12 @@ form.addEventListener("submit", async (event) => {
 
     const data = await response.json();
 
-    if (!response.ok) {
-    statusEl.textContent = "Message sent successfully.";
-    form.reset();
-  } catch (error) {
-    statusEl.textContent = error.message || "Something went wrong.";
-  } finally {
-    submitBtn.disabled = false;
-  }
-});
+function sendMessage() {
+    // (Optional) simulate sending data here
+
+    // Redirect to next page
+    window.location.href = "success.html";
+}
 </script>
 
 </body>
