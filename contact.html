@@ -95,9 +95,6 @@ form.addEventListener("submit", async (event) => {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.error || "Failed to send message.");
-    }
-
     statusEl.textContent = "Message sent successfully.";
     form.reset();
   } catch (error) {
