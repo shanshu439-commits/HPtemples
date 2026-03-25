@@ -50,7 +50,10 @@
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="5" placeholder="Write your message" required></textarea>
 
-            <button onclick="sendMessage()">Send Message</button>
+          <form onsubmit="return handleSubmit()">
+         <input type="text" name="message" required>
+        <button type="submit">Send Message</button>
+        </form>
             <p id="formStatus" aria-live="polite"></p>
         </form>
     </div>
@@ -94,11 +97,13 @@ form.addEventListener("submit", async (event) => {
 
     const data = await response.json();
 
-function sendMessage() {
-    // (Optional) simulate sending data here
+function handleSubmit() {
+    // You can process/send data here
 
-    // Redirect to next page
+    // Redirect after sending
     window.location.href = "next.html";
+
+    return false; // prevent default form submission
 }
 </script>
 
