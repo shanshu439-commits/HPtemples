@@ -756,3 +756,10 @@ footer{
     color: #000;
     text-decoration: underline;
 }
+/* Your old CSS above */
+
+/* PASTE NEW CONTACT CSS HERE */
+.contact-section {
+    padding: 60px 20px;
+}
+...
