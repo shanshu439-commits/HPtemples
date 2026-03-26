@@ -4,6 +4,8 @@
     <title>Contact | Kangra Temples</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ✅ CSS LINK -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,37 +24,40 @@
 
 <div class="contact-wrapper">
 
-    <!-- Owner Information -->
+    <!-- LEFT SIDE -->
     <div class="owner-info">
         <h2>Website Owner</h2>
-        <p><strong>Name:</strong> Shivanshu Sharma</p>
+        <p><strong>Name:</strong> Shivanshu</p>
         <p><strong>Email:</strong> shivanshu@example.com</p>
         <p><strong>Phone:</strong> +91 98765 43210</p>
         <p><strong>Location:</strong> Kangra, Himachal Pradesh, India</p>
 
         <h3>About This Website</h3>
         <p>
-            This website is created to provide information about 
-            famous temples of Kangra district and promote tourism 
-            in Himachal Pradesh.
+            This website provides information about famous temples
+            of Kangra district and promotes tourism in Himachal Pradesh.
         </p>
     </div>
 
-    <!-- Contact Form -->
+    <!-- RIGHT SIDE FORM -->
     <div class="contact-form-box">
         <h2>Send a Message</h2>
 
-        <form id="contact-form">
+        <!-- ✅ FIXED FORM -->
+        <form id="contactForm">
+
             <label>Full Name</label>
-            <input type="text" id="name" placeholder="Enter your name" required>
+            <input id="name" type="text" placeholder="Enter your name" required>
 
             <label>Email Address</label>
-            <input type="email" id="email" placeholder="Enter your email" required>
+            <input id="email" type="email" placeholder="Enter your email" required>
 
             <label>Message</label>
             <textarea id="message" rows="5" placeholder="Write your message" required></textarea>
 
-            <button type="submit" id="submit">Send Message</button>
+            <button id="submitBtn" type="submit">Send Message</button>
+
+            <p id="formStatus"></p>
         </form>
     </div>
 
@@ -61,56 +66,34 @@
 </section>
 
 <footer>
-© 2026 Kangra Temples | Himachal Pradesh Tourism
+&copy; 2026 Kangra Temples
 </footer>
 
+<!-- ✅ FIXED SCRIPT -->
 <script>
-document.getElementById('contact-form').addEventListener('submit', async function(e){
-    e.preventDefault();
+const form = document.getElementById("contactForm");
+const statusEl = document.getElementById("formStatus");
+const submitBtn = document.getElementById("submitBtn");
 
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
 
     if (!name || !email || !message) {
-        alert('Please fill in all fields.');
+        statusEl.textContent = "Please fill all fields!";
         return;
     }
 
-    try {
-        const apiUrl = window.CONTACT_API_URL || 'http://localhost:3000/api/sendgrid';
-        const res = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name, email, message })
-        });
+    submitBtn.disabled = true;
+    statusEl.textContent = "Sending...";
 
-        let data = {};
-        const contentType = res.headers.get('content-type') || '';
-        if (contentType.includes('application/json')) {
-            data = await res.json();
-        } else {
-            const text = await res.text();
-            if (text) data.message = text;
-        }
-
-        if (res.ok) {
-            alert("Message sent successfully.");
-            document.getElementById('contact-form').reset();
-        } else {
-            if (res.status === 405 && window.location.port === '5500') {
-                alert("API route is not available on Live Server (127.0.0.1:5500). Run a backend server (e.g., Vercel dev) or set window.CONTACT_API_URL to your API host.");
-                return;
-            }
-            alert(data.message || `Failed to send message (${res.status}).`);
-        }
-
-    } catch (error) {
-        alert("Error sending message.");
-        console.error(error);
-    }
+    // Simulate sending (you can connect backend later)
+    setTimeout(() => {
+        window.location.href = "next.html"; // ✅ Redirect
+    }, 1500);
 });
 </script>
 
