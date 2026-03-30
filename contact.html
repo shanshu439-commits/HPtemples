@@ -52,12 +52,17 @@
             <label>Email Address</label>
             <input id="email" type="email" placeholder="Enter your email" required>
 
+<<<<<<< HEAD
+            <button type="submit" id="submitBtn">Send Message</button>
+            <p id="formStatus" style="margin-top: 15px; font-weight: 600;"></p>
+=======
             <label>Message</label>
             <textarea id="message" rows="5" placeholder="Write your message" required></textarea>
 
             <button id="submitBtn" type="submit">Send Message</button>
 
             <p id="formStatus"></p>
+>>>>>>> 0b5c5c4458407d8dbac50fddf323c11ac3fd25ac
         </form>
     </div>
 
@@ -75,7 +80,11 @@ const form = document.getElementById("contactForm");
 const statusEl = document.getElementById("formStatus");
 const submitBtn = document.getElementById("submitBtn");
 
+<<<<<<< HEAD
+form.addEventListener("submit", (event) => {
+=======
 form.addEventListener("submit", function(event) {
+>>>>>>> 0b5c5c4458407d8dbac50fddf323c11ac3fd25ac
     event.preventDefault();
 
     const name = document.getElementById("name").value.trim();
@@ -83,6 +92,34 @@ form.addEventListener("submit", function(event) {
     const message = document.getElementById("message").value.trim();
 
     if (!name || !email || !message) {
+<<<<<<< HEAD
+        statusEl.textContent = "Please fill all fields.";
+        statusEl.style.color = "red";
+        return;
+    }
+
+    // Disable button and show sending state
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+    statusEl.textContent = "";
+
+    // Simulate a successful send (since user doesn't want real email for now)
+    setTimeout(() => {
+        statusEl.textContent = "Your email has been sent successfully!";
+        statusEl.style.color = "#0c8b5c"; // Premium Green
+        
+        // Reset form and button
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send Message";
+
+        // Optional: clear success message after some time
+        setTimeout(() => {
+            if(statusEl.textContent === "Your email has been sent successfully!") {
+                statusEl.textContent = "";
+            }
+        }, 5000);
+=======
         statusEl.textContent = "Please fill all fields!";
         return;
     }
@@ -93,6 +130,7 @@ form.addEventListener("submit", function(event) {
     // Simulate sending (you can connect backend later)
     setTimeout(() => {
         window.location.href = "next.html"; // ✅ Redirect
+>>>>>>> 0b5c5c4458407d8dbac50fddf323c11ac3fd25ac
     }, 1500);
 });
 </script>
