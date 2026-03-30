@@ -4,6 +4,8 @@
     <title>Contact | Kangra Temples</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ✅ CSS LINK -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,36 +24,45 @@
 
 <div class="contact-wrapper">
 
+    <!-- LEFT SIDE -->
     <div class="owner-info">
         <h2>Website Owner</h2>
-        <p><strong>Name:</strong> Shivanshu </p>
+        <p><strong>Name:</strong> Shivanshu</p>
         <p><strong>Email:</strong> shivanshu@example.com</p>
         <p><strong>Phone:</strong> +91 98765 43210</p>
         <p><strong>Location:</strong> Kangra, Himachal Pradesh, India</p>
 
         <h3>About This Website</h3>
         <p>
-            This website is created to provide information about
-            famous temples of Kangra district and promote tourism
-            in Himachal Pradesh.
+            This website provides information about famous temples
+            of Kangra district and promotes tourism in Himachal Pradesh.
         </p>
     </div>
 
+    <!-- RIGHT SIDE FORM -->
     <div class="contact-form-box">
         <h2>Send a Message</h2>
 
+        <!-- ✅ FIXED FORM -->
         <form id="contactForm">
-            <label for="name">Full Name</label>
-            <input id="name" name="name" type="text" placeholder="Enter your name" required>
 
-            <label for="email">Email Address</label>
-            <input id="email" name="email" type="email" placeholder="Enter your email" required>
+            <label>Full Name</label>
+            <input id="name" type="text" placeholder="Enter your name" required>
 
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Write your message" required></textarea>
+            <label>Email Address</label>
+            <input id="email" type="email" placeholder="Enter your email" required>
 
+<<<<<<< HEAD
             <button type="submit" id="submitBtn">Send Message</button>
             <p id="formStatus" style="margin-top: 15px; font-weight: 600;"></p>
+=======
+            <label>Message</label>
+            <textarea id="message" rows="5" placeholder="Write your message" required></textarea>
+
+            <button id="submitBtn" type="submit">Send Message</button>
+
+            <p id="formStatus"></p>
+>>>>>>> 0b5c5c4458407d8dbac50fddf323c11ac3fd25ac
         </form>
     </div>
 
@@ -60,15 +71,20 @@
 </section>
 
 <footer>
-&copy; 2026 Kangra Temples | Himachal Pradesh Tourism
+&copy; 2026 Kangra Temples
 </footer>
 
+<!-- ✅ FIXED SCRIPT -->
 <script>
 const form = document.getElementById("contactForm");
 const statusEl = document.getElementById("formStatus");
 const submitBtn = document.getElementById("submitBtn");
 
+<<<<<<< HEAD
 form.addEventListener("submit", (event) => {
+=======
+form.addEventListener("submit", function(event) {
+>>>>>>> 0b5c5c4458407d8dbac50fddf323c11ac3fd25ac
     event.preventDefault();
 
     const name = document.getElementById("name").value.trim();
@@ -76,6 +92,7 @@ form.addEventListener("submit", (event) => {
     const message = document.getElementById("message").value.trim();
 
     if (!name || !email || !message) {
+<<<<<<< HEAD
         statusEl.textContent = "Please fill all fields.";
         statusEl.style.color = "red";
         return;
@@ -102,6 +119,18 @@ form.addEventListener("submit", (event) => {
                 statusEl.textContent = "";
             }
         }, 5000);
+=======
+        statusEl.textContent = "Please fill all fields!";
+        return;
+    }
+
+    submitBtn.disabled = true;
+    statusEl.textContent = "Sending...";
+
+    // Simulate sending (you can connect backend later)
+    setTimeout(() => {
+        window.location.href = "next.html"; // ✅ Redirect
+>>>>>>> 0b5c5c4458407d8dbac50fddf323c11ac3fd25ac
     }, 1500);
 });
 </script>
