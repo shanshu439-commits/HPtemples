@@ -50,10 +50,8 @@
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="5" placeholder="Write your message" required></textarea>
 
-          <form onsubmit="return handleSubmit()">
-        <button type="submit">Send Message</button>
-        </form>
-            <p id="formStatus" aria-live="polite"></p>
+            <button type="submit" id="submitBtn">Send Message</button>
+            <p id="formStatus" style="margin-top: 15px; font-weight: 600;"></p>
         </form>
     </div>
 
@@ -70,40 +68,42 @@ const form = document.getElementById("contactForm");
 const statusEl = document.getElementById("formStatus");
 const submitBtn = document.getElementById("submitBtn");
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const message = document.getElementById("message").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
 
-  if (!name || !email || !message) {
-    statusEl.textContent = "Please fill all fields.";
-    return;
-  }
+    if (!name || !email || !message) {
+        statusEl.textContent = "Please fill all fields.";
+        statusEl.style.color = "red";
+        return;
+    }
 
-  submitBtn.disabled = true;
-  statusEl.textContent = "Sending...";
+    // Disable button and show sending state
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+    statusEl.textContent = "";
 
-  try {
-    const response = await fetch("http://localhost:3000/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, email, message })
-    });
+    // Simulate a successful send (since user doesn't want real email for now)
+    setTimeout(() => {
+        statusEl.textContent = "Your email has been sent successfully!";
+        statusEl.style.color = "#0c8b5c"; // Premium Green
+        
+        // Reset form and button
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send Message";
 
-    const data = await response.json();
-
-function handleSubmit() {
-    // You can process/send data here
-
-    // Redirect after sending
-    window.location.href = "next.html";
-
-    return false; // prevent default form submission
-}
+        // Optional: clear success message after some time
+        setTimeout(() => {
+            if(statusEl.textContent === "Your email has been sent successfully!") {
+                statusEl.textContent = "";
+            }
+        }, 5000);
+    }, 1500);
+});
 </script>
 
 </body>
