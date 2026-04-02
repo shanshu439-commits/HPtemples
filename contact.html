@@ -52,17 +52,11 @@
             <label>Email Address</label>
             <input id="email" type="email" placeholder="Enter your email" required>
 
-<<<<<<< HEAD
-            <button type="submit" id="submitBtn">Send Message</button>
-            <p id="formStatus" style="margin-top: 15px; font-weight: 600;"></p>
-=======
             <label>Message</label>
             <textarea id="message" rows="5" placeholder="Write your message" required></textarea>
 
-            <button id="submitBtn" type="submit">Send Message</button>
-
-            <p id="formStatus"></p>
->>>>>>> 0b5c5c4458407d8dbac50fddf323c11ac3fd25ac
+            <button type="submit" id="submitBtn">Send Message</button>
+            <p id="formStatus" style="margin-top: 15px; font-weight: 600;"></p>
         </form>
     </div>
 
@@ -71,7 +65,7 @@
 </section>
 
 <footer>
-&copy; 2026 Kangra Temples
+&copy; 2026 Kangra Temples | Himachal Pradesh Tourism
 </footer>
 
 <!-- ✅ FIXED SCRIPT -->
@@ -80,11 +74,7 @@ const form = document.getElementById("contactForm");
 const statusEl = document.getElementById("formStatus");
 const submitBtn = document.getElementById("submitBtn");
 
-<<<<<<< HEAD
 form.addEventListener("submit", (event) => {
-=======
-form.addEventListener("submit", function(event) {
->>>>>>> 0b5c5c4458407d8dbac50fddf323c11ac3fd25ac
     event.preventDefault();
 
     const name = document.getElementById("name").value.trim();
@@ -92,7 +82,6 @@ form.addEventListener("submit", function(event) {
     const message = document.getElementById("message").value.trim();
 
     if (!name || !email || !message) {
-<<<<<<< HEAD
         statusEl.textContent = "Please fill all fields.";
         statusEl.style.color = "red";
         return;
@@ -119,18 +108,6 @@ form.addEventListener("submit", function(event) {
                 statusEl.textContent = "";
             }
         }, 5000);
-=======
-        statusEl.textContent = "Please fill all fields!";
-        return;
-    }
-
-    submitBtn.disabled = true;
-    statusEl.textContent = "Sending...";
-
-    // Simulate sending (you can connect backend later)
-    setTimeout(() => {
-        window.location.href = "next.html"; // ✅ Redirect
->>>>>>> 0b5c5c4458407d8dbac50fddf323c11ac3fd25ac
     }, 1500);
 });
 </script>
